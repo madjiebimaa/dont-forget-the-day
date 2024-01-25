@@ -21,3 +21,9 @@ export function httpClient(input: RequestInfo | URL, init?: RequestInit) {
 
   return promise;
 }
+
+export function trimText(text: string, max: number = 17) {
+  return text.length > max
+    ? [...text.slice(0, max).split(''), '...'].join('')
+    : text;
+}
