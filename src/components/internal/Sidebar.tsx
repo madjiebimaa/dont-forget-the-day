@@ -17,11 +17,11 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        'shrink-0 z-20 flex flex-col gap-2 fixed md:static h-screen w-[260px] max-w-[260px] bg-white transition-all duration-300',
+        'shrink-0 z-20 flex flex-col fixed md:static h-screen w-[260px] max-w-[260px] border-r border-r-slate-100 transition-all duration-300',
         !openSidebar && '-ml-[260px]'
       )}
     >
-      <section className="flex items-center justify-end p-2">
+      <section className="flex items-center justify-end min-h-14 p-2">
         <Button
           variant="ghost"
           className={cn(
@@ -33,6 +33,7 @@ export default function Sidebar() {
           <Icon className="shrink-0 h-6 w-6 text-slate-900 opacity-50" />
         </Button>
       </section>
+      <span className='pt-1 border-t border-t-slate-100'/>
       <CountryCommand />
     </aside>
   );

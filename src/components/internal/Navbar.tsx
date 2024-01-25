@@ -33,6 +33,13 @@ export default function Navbar() {
       >
         <Icon className="shrink-0 h-6 w-6 text-slate-900 opacity-50" />
       </Button>
+      <Button
+        variant="outline"
+        className="text-slate-900"
+        onClick={() => dateActions.goToToday()}
+      >
+        Today
+      </Button>
       <div className="flex items-center gap-1">
         <Button
           variant="ghost"

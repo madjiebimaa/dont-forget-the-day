@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen h-screen max-h-screen overflow-x-hidden">
       <Sidebar />
-      <main className="flex-1 flex flex-col bg-slate-100">
+      <main className="flex-1 flex flex-col">
         <Navbar />
         <MonthCalendar />
 

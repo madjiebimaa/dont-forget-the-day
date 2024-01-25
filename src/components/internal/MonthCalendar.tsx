@@ -12,7 +12,7 @@ export default function MonthCalendar() {
   const month = useMemo(() => getMonth(selectedDate.month()), [selectedDate]);
 
   return (
-    <section className="flex-1 grid grid-cols-7 grid-rows-5 gap-[1px]">
+    <section className="flex-1 grid grid-cols-7 grid-rows-5 gap-[1px] pt-[1px] bg-slate-100">
       {month.map((week, weekIndex) =>
         week.map((day) => (
           <Day key={day.toISOString()} day={day} weekIndex={weekIndex} />

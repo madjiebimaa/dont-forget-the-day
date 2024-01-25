@@ -32,7 +32,7 @@ export default function CountryCommandItem({
       />
       <span
         className={cn(
-          'shrink-0 h-6 w-6 mr-2 bg-white rounded-full shadow-md',
+          'shrink-0 h-6 w-6 mr-2 rounded-full shadow-md',
           `fib fis fi-${country.code.toLowerCase()}`
         )}
       />

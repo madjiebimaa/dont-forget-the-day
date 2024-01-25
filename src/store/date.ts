@@ -9,6 +9,7 @@ type DateActions = {
   actions: {
     prevMonth: () => void;
     nextMonth: () => void;
+    goToToday: () => void;
   };
 };
 
@@ -39,6 +40,7 @@ const dateStore = create<DateState & DateActions>()((set) => ({
           selectedDate: dayjs(new Date(year, month + 1, date)),
         };
       }),
+    goToToday: () => set({ selectedDate: dayjs() }),
   },
 }));
 
