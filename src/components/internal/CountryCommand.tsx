@@ -18,7 +18,7 @@ export default function CountryCommand() {
   const { data, isLoading } = useCountries();
 
   return (
-    <Command className="rounded-none">
+    <Command className="p-2 rounded-none">
       <CommandInput placeholder="Type a country name..." />
       <CommandList className="min-h-full">
         <CommandEmpty>No countries found.</CommandEmpty>

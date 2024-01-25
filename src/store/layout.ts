@@ -11,7 +11,7 @@ type LayoutActions = {
 };
 
 const initialState: LayoutState = {
-  openSidebar: false,
+  openSidebar: true,
 };
 
 const layoutStore = create<LayoutState & LayoutActions>()((set) => ({

@@ -14,7 +14,7 @@ export default function Navbar() {
   const Icon = openSidebar ? SidebarClose : SidebarOpen;
 
   return (
-    <nav className="flex items-center justify-between">
+    <nav className="flex items-center justify-between p-2">
       <Button
         variant="ghost"
         className={cn(

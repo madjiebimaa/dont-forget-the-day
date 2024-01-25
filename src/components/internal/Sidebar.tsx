@@ -17,11 +17,11 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        'shrink-0 z-20 flex flex-col gap-2 fixed md:static h-screen w-[260px] max-w-[260px] p-2 bg-white transition-all duration-300',
+        'shrink-0 z-20 flex flex-col gap-2 fixed md:static h-screen w-[260px] max-w-[260px] bg-white transition-all duration-300',
         !openSidebar && '-ml-[260px]'
       )}
     >
-      <section className="flex items-center justify-end">
+      <section className="flex items-center justify-end p-2">
         <Button
           variant="ghost"
           className={cn(
