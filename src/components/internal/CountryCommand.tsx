@@ -7,14 +7,12 @@ import {
   CommandInput,
   CommandList,
 } from '@/components/ui/command';
-import CountryCommandItem from './CountryCommandItem';
 import CountryCommandItemSkeleton from '../skeleton/CountryCommandItemSkeleton';
+import CountryCommandItem from './CountryCommandItem';
 
 import { useCountries } from '@/queries/country';
-import { useSelectedCountries } from '@/store/country';
 
 export default function CountryCommand() {
-  const selectedCountries = useSelectedCountries();
   const { data, isLoading } = useCountries();
 
   return (
@@ -29,11 +27,7 @@ export default function CountryCommand() {
               .map((_, index) => <CountryCommandItemSkeleton key={index} />)}
           {data &&
             data.countries.map((country) => (
-              <CountryCommandItem
-                key={country.code}
-                country={country}
-                selectedCountries={selectedCountries}
-              />
+              <CountryCommandItem key={country.code} country={country} />
             ))}
         </CommandGroup>
       </CommandList>

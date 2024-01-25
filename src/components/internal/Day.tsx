@@ -1,6 +1,9 @@
-import { Dayjs } from 'dayjs';
+'use client';
 
-import { cn, isCurrentDay, isDayInCurrentMonth } from '@/lib/utils';
+import dayjs, { Dayjs } from 'dayjs';
+
+import { cn } from '@/lib/utils';
+import { useSelectedDate } from '@/store/date';
 
 interface DayProps {
   day: Dayjs;
@@ -8,7 +11,11 @@ interface DayProps {
 }
 
 export default function Day({ day, weekIndex }: DayProps) {
+  const selectedDate = useSelectedDate();
+
   const isDayInFirstWeek = weekIndex === 0;
+  const isCurrentDay = dayjs().format('DD-MM-YY') === day.format('DD-MM-YY');
+  const isDayInSelectedMonth = selectedDate.month() === day.month();
 
   return (
     <div className={cn('flex flex-col p-2 bg-white')}>
@@ -21,8 +28,8 @@ export default function Day({ day, weekIndex }: DayProps) {
         <p
           className={cn(
             'grid place-content-center h-8 w-8 p-1 rounded-full font-medium text-sm text-slate-900',
-            isCurrentDay(day) && 'text-white bg-blue-400',
-            !isDayInCurrentMonth(day) && 'text-slate-400'
+            !isDayInSelectedMonth && 'text-slate-400',
+            isCurrentDay && 'text-white bg-blue-400'
           )}
         >
           {day.format('DD')}

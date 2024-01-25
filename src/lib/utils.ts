@@ -44,11 +44,3 @@ export function getMonth(month = dayjs().month()) {
 
   return daysMatrix;
 }
-
-export function isCurrentDay(day: Dayjs): boolean {
-  return day.format('DD-MM-YY') === dayjs().format('DD-MM-YY');
-}
-
-export function isDayInCurrentMonth(day: Dayjs): boolean {
-  return day.month() === dayjs().month();
-}

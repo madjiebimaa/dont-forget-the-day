@@ -2,11 +2,14 @@
 
 import { useMemo } from 'react';
 
-import { getMonth } from '@/lib/utils';
 import Day from './Day';
 
+import { getMonth } from '@/lib/utils';
+import { useSelectedDate } from '@/store/date';
+
 export default function MonthCalendar() {
-  const month = useMemo(() => getMonth(), []);
+  const selectedDate = useSelectedDate();
+  const month = useMemo(() => getMonth(selectedDate.month()), [selectedDate]);
 
   return (
     <section className="flex-1 grid grid-cols-7 grid-rows-5 gap-[1px]">
