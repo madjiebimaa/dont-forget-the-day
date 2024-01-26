@@ -18,7 +18,10 @@ export const getHolidays = async ({
   countryCodes,
   month,
   year,
-}: GetHolidayParams): Promise<{ holidays: Holiday[] }> => {
+}: GetHolidayParams): Promise<{
+  holidays: Holiday[];
+  rejectedCountryCodes: string[];
+}> => {
   const response = await httpClient(
     `${BASE_URL}/api/holidays?month=${month}&year=${year}`,
     {

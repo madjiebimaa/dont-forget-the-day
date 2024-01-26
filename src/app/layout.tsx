@@ -2,6 +2,8 @@ import QueryProvider from '@/providers/QueryProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { Toaster as Sonner } from '@/components/ui/sonner';
+
 import './globals.css';
 import '/node_modules/flag-icons/css/flag-icons.min.css';
 
@@ -21,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
         <QueryProvider>{children}</QueryProvider>
+        <Sonner />
       </body>
     </html>
   );

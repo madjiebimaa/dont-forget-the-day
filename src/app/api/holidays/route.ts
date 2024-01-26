@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { NextResponse } from 'next/server';
 
 import { getNagerDateHolidays } from '@/lib/nager-date';
+import { NagerDateResponse } from '@/lib/types/nager-date';
 import { createEventsInDate } from '@/lib/utils';
 
 export const POST = async (request: Request) => {
@@ -16,11 +17,30 @@ export const POST = async (request: Request) => {
       countryCodes: string[];
     };
 
-    const responses = await Promise.all(
-      countryCodes.map((countryCode) =>
-        getNagerDateHolidays({ countryCode, year: parseInt(year) })
-      )
+    const settledResponses = await Promise.allSettled(
+      countryCodes.map(async (countryCode) => {
+        try {
+          const response = await getNagerDateHolidays({
+            countryCode,
+            year: parseInt(year),
+          });
+
+          return Promise.resolve(response);
+        } catch {
+          return Promise.reject(countryCode);
+        }
+      })
     );
+
+    let responses: NagerDateResponse[] = [];
+    let rejectedCountryCodes: string[] = [];
+    settledResponses.forEach((settledResponse) => {
+      if (settledResponse.status === 'fulfilled') {
+        responses.push(settledResponse.value as NagerDateResponse);
+      } else {
+        rejectedCountryCodes.push(settledResponse.reason as string);
+      }
+    });
 
     const holidays = responses.reduce(
       (prevValue, holiday) => prevValue.concat(holiday),
@@ -30,7 +50,7 @@ export const POST = async (request: Request) => {
     const holidaysInThisMonth = holidays.filter(
       (holiday) =>
         holiday.date.slice(0, 7) ===
-        `${year}-${String(parseInt(month) + 1).padStart(2, '0')}`
+        `${year}-${String(parseInt(month)).padStart(2, '0')}`
     );
 
     return NextResponse.json({
@@ -41,6 +61,7 @@ export const POST = async (request: Request) => {
           events,
         })
       ),
+      rejectedCountryCodes,
     });
   } catch (error) {
     console.log(request.url, error);

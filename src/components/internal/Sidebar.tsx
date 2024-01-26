@@ -17,7 +17,7 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        'shrink-0 z-20 flex flex-col fixed md:static h-screen w-[260px] max-w-[260px] border-r border-r-slate-100 transition-all duration-300',
+        'shrink-0 z-20 flex flex-col fixed md:static h-screen w-[260px] max-w-[260px] bg-white border-r border-r-slate-100 transition-all duration-300',
         !openSidebar && '-ml-[260px]'
       )}
     >

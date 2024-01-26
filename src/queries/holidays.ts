@@ -7,13 +7,25 @@ import { Holiday } from '@/lib/types/types';
 export const useHolidays = (
   params: GetHolidayParams,
   config?: Omit<
-    UseQueryOptions<{ holidays: Holiday[] }, Error>,
+    UseQueryOptions<
+      { holidays: Holiday[]; rejectedCountryCodes: string[] },
+      Error
+    >,
     'queryKey' | 'queryFn'
   >
-): UseQueryResult<{ holidays: Holiday[] }, Error> => {
-  return useQuery<{ holidays: Holiday[] }, Error>({
+): UseQueryResult<
+  { holidays: Holiday[]; rejectedCountryCodes: string[] },
+  Error
+> => {
+  return useQuery<
+    { holidays: Holiday[]; rejectedCountryCodes: string[] },
+    Error
+  >({
     ...config,
     queryKey: ['/holidays', params.countryCodes, params.month, params.year],
-    queryFn: (): Promise<{ holidays: Holiday[] }> => getHolidays(params),
+    queryFn: (): Promise<{
+      holidays: Holiday[];
+      rejectedCountryCodes: string[];
+    }> => getHolidays(params),
   });
 };
