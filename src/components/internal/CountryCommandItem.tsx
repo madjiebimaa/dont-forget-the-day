@@ -6,16 +6,17 @@ import { CommandItem } from '../ui/command';
 
 import { Country } from '@/lib/types/types';
 import { cn, trimText } from '@/lib/utils';
-import { useCountryActions, useSelectedCountries } from '@/store/country';
+import { useCountryActions } from '@/store/country';
 
 interface CountryCommandItemProps {
   country: Country;
+  selectedCountries: Country[];
 }
 
 export default function CountryCommandItem({
   country,
+  selectedCountries,
 }: CountryCommandItemProps) {
-  const selectedCountries = useSelectedCountries();
   const countryActions = useCountryActions();
 
   return (
@@ -27,7 +28,13 @@ export default function CountryCommandItem({
       <Check
         className={cn(
           'shrink-0 h-4 w-4 mr-2 text-slate-900 transition-opacity',
-          selectedCountries.includes(country) ? 'opacity-100' : 'opacity-0'
+          Boolean(
+            selectedCountries.find(
+              (selectedCountry) => selectedCountry.code === country.code
+            )
+          )
+            ? 'opacity-100'
+            : 'opacity-0'
         )}
       />
       <span

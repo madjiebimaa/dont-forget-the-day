@@ -7,6 +7,7 @@ import CountryCommand from './CountryCommand';
 
 import { cn } from '@/lib/utils';
 import { useLayoutActions, useOpenSidebar } from '@/store/layout';
+import CountryCollapsible from './CountryCollapsible';
 
 export default function Sidebar() {
   const openSidebar = useOpenSidebar();
@@ -33,8 +34,9 @@ export default function Sidebar() {
           <Icon className="shrink-0 h-6 w-6 text-slate-900 opacity-50" />
         </Button>
       </section>
-      <section className="h-full pt-1 pb-2 border-t border-t-slate-100">
+      <section className="flex flex-1 flex-col pt-1 pb-2 border-t border-t-slate-100">
         <CountryCommand />
+        <CountryCollapsible />
       </section>
     </aside>
   );
