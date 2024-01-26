@@ -1,8 +1,10 @@
 import { BASE_URL } from './constans';
+import { GetHolidayParams } from './types/params';
 import { Country, Holiday } from './types/types';
+import { httpClient } from './utils';
 
 export const getCountries = async (): Promise<{ countries: Country[] }> => {
-  const response = await fetch(`${BASE_URL}/api/countries`, {
+  const response = await httpClient(`${BASE_URL}/api/countries`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -12,14 +14,16 @@ export const getCountries = async (): Promise<{ countries: Country[] }> => {
   return response.json();
 };
 
-export const getHolidays = async (
-  countryCode: string,
-  year: number
-): Promise<{ holidays: Holiday[] }> => {
-  const response = await fetch(
-    `${BASE_URL}/api/holidays?countryCode=${countryCode}&year=${year}`,
+export const getHolidays = async ({
+  countryCodes,
+  month,
+  year,
+}: GetHolidayParams): Promise<{ holidays: Holiday[] }> => {
+  const response = await httpClient(
+    `${BASE_URL}/api/holidays?month=${month}&year=${year}`,
     {
-      method: 'GET',
+      method: 'POST',
+      body: JSON.stringify({ countryCodes }),
       headers: {
         'Content-Type': 'application/json',
       },

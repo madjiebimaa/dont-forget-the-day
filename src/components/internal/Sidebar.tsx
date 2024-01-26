@@ -33,8 +33,9 @@ export default function Sidebar() {
           <Icon className="shrink-0 h-6 w-6 text-slate-900 opacity-50" />
         </Button>
       </section>
-      <span className='pt-1 border-t border-t-slate-100'/>
-      <CountryCommand />
+      <section className="h-full pt-1 pb-2 border-t border-t-slate-100">
+        <CountryCommand />
+      </section>
     </aside>
   );
 }
