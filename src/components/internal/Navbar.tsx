@@ -56,7 +56,7 @@ export default function Navbar() {
           <ChevronRight className="shrink-0 h-6 w-6 text-slate-900 opacity-50" />
         </Button>
       </div>
-      <p className="font-medium text-xl text-slate-600">
+      <p className="font-medium text-xl text-slate-600 text-center">
         {selectedDate.format('MMMM YYYY')}
       </p>
     </nav>

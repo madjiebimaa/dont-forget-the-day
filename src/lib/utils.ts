@@ -64,7 +64,7 @@ function generalizedRepatedEventCountryCode(
     if (event.name === holiday.name) {
       return {
         name: event.name,
-        countryCodes: 'GLOBAL',
+        countryCode: 'GLOBAL',
       };
     }
 
